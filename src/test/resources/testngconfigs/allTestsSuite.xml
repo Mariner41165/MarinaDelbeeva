@@ -3,16 +3,16 @@
 <suite name= "allTestsSuite">
   <test name="allTestsSuite">
     <classes>
-      <class name="ru.training.at.hw1.addandsubtract.SumOfNonZeroRationalNumbers"/>
-      <class name="ru.training.at.hw1.addandsubtract.SumOfNonZeroNaturalNumbers"/>
-      <class name="ru.training.at.hw1.addandsubtract.SubOfZeroAndNaturalNumber"/>
-      <class name="ru.training.at.hw1.addandsubtract.SubOfNonZeroRationalNumbers"/>
-      <class name="ru.training.at.hw1.multiplyanddivide.CtgTest"/>
-      <class name="ru.training.at.hw1.multiplyanddivide.DivOfRationalNumbers"/>
-      <class name="ru.training.at.hw1.multiplyanddivide.MultOfNaturalNumbers"/>
-      <class name="ru.training.at.hw1.multiplyanddivide.SqrtTest"/>
-      <class name="ru.training.at.hw1.multiplyanddivide.TgTest"/>
-      <class name="ru.training.at.hw1.multiplyanddivide.PowTest"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroNaturalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfZeroAndNaturalNumber"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfNonZeroRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.CtgTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.DivOfRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.MultOfNaturalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.SqrtTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.TgTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.PowTest"/>
     </classes>
   </test>
 </suite>

@@ -3,10 +3,10 @@
 <suite name= "addAndSubtractTests" verbose="1">
   <test name="addAndSubtractTests">
     <classes>
-      <class name="ru.training.at.hw1.addandsubtract.SumOfNonZeroRationalNumbers"/>
-      <class name="ru.training.at.hw1.addandsubtract.SumOfNonZeroNaturalNumbers"/>
-      <class name="ru.training.at.hw1.addandsubtract.SubOfZeroAndNaturalNumber"/>
-      <class name="ru.training.at.hw1.addandsubtract.SubOfNonZeroRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroNaturalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfZeroAndNaturalNumber"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfNonZeroRationalNumbers"/>
     </classes>
   </test>
 </suite>
