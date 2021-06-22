@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name= "multiplyAndDivideTests">
+  <test name="multiplyAndDivideTests">
+    <classes>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.CtgTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.DivOfRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.MultOfNaturalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.SqrtTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.TgTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.PowTest"/>
+    </classes>
+  </test>
+</suite>
