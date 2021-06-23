@@ -1,6 +1,8 @@
 package ru.training.at.hw2.ex1;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.By;
@@ -22,22 +24,19 @@ public class ExerciseOne {
 
     @BeforeSuite
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe"); //v.91.0.4472
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         softAssert = new SoftAssert();
         driver.manage().window().maximize();
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
-    //Assert Browser title
     @Test
     public void assertBrowserTitle() {
+        //Assert Browser title
         softAssert.assertEquals("Home Page", driver.getTitle());
-    }
 
-    //Perform login and Assert Username is logged in
-    @Test (priority = 0)
-    public void assertUsernameHasLoggedIn() {
+        //Perform login and Assert Username is logged in
         WebElement login = waitForElementLocatedBy(By.className("profile-photo"));
         login.click();
         WebElement name = waitForElementLocatedBy(By.id("name"));
@@ -47,11 +46,8 @@ public class ExerciseOne {
         waitForElementLocatedBy(By.id("login-button")).click();
         WebElement username = waitForElementLocatedBy(By.id("user-name"));
         softAssert.assertTrue(username.isDisplayed());
-    }
 
-    //Assert that there are 4 items on the header section are displayed and they have proper texts
-    @Test
-    public void assertDisplayingMenuButtonsWithProperTexts() {
+        //Assert that there are 4 items on the header section are displayed and they have proper texts
         waitForElementLocatedBy(By.className("uui-navigation"));
         List<WebElement> navigationBar = waitForElementLocatedBy(By.className("uui-header"))
                                                .findElements(By.className("uui-navigation"));
@@ -59,59 +55,42 @@ public class ExerciseOne {
                                                       .findElements(By.cssSelector("ul > li"));
         List<String> itemsOnHeaderToStrings =
             itemsOnHeader.stream().map(WebElement::getText).collect(Collectors.toList());
-        List<String> itemsForChecking = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors");
-        softAssert.assertTrue(itemsOnHeaderToStrings.equals(itemsForChecking),
+        List<String> itemsOnHeaderForChecking = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors");
+        softAssert.assertTrue(itemsOnHeaderToStrings.equals(itemsOnHeaderForChecking),
             "there are 4 items on the header section and they have proper texts");
-    }
 
-    //Assert that there are 4 images on the Index Page and they are displayed
-    @Test
-    public void assertDisplayingOfFourImages() {
+        //Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> images = waitForListOfElementsLocatedBy(new ByClassName("benefit-icon"));
         softAssert.assertEquals(images.size(), 4);
-    }
 
-    //Assert that there are 4 texts on the Index Page under icons and they have proper text
-    @Test
-    public void assertFourTestsUnderIconsHaveProperText() {
+        //Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> textsUnderImages = waitForListOfElementsLocatedBy(new ByClassName("benefit-txt"));
         softAssert.assertEquals(textsUnderImages.size(), 4);
-    }
 
-    //Assert that there is the iframe with “Frame Button” exist
-    @Test
-    public void assertExistingIframeWithFrameButton() {
+        //Assert that there is the iframe with “Frame Button” exist
         List<WebElement> iframes = waitForListOfElementsLocatedBy(By.tagName("iframe"));
-        Assert.assertNotNull(iframes.get(0).findElements(By.id("frame-button")));
-        //Assert.assertTrue(iframes.stream().anyMatch(s -> s.getAttribute("id").contains("frame-button")));
-    }
+        softAssert.assertNotNull(iframes.get(0).findElements(By.id("frame-button")));
 
-    //Switch to the iframe and check that there is “Frame Button” in the iframe
-    //Switch to original window back
-    @Test
-    public void assertFrameButtonInFrame() {
+        //Switch to the iframe and check that there is “Frame Button” in the iframe
+        //Switch to original window back
         driver.switchTo().frame("frame");
         Assert.assertTrue(waitForElementLocatedBy(By.id("frame-button")).isDisplayed());
         driver.switchTo().defaultContent();
-    }
 
-    //Assert that there are 5 items in the Left Section are displayed and they have proper text
-    @Test
-    public void assertDisplayingOfFiveItemsInLeftSectionWithProperText() {
-        WebElement sideBar = waitForElementLocatedBy(By.className("uui-side-bar"));
-        List<WebElement> sideBarItems = sideBar.findElements(By.cssSelector("div > div > div > div > ul > li"));
+        //Assert that there are 5 items in the Left Section are displayed and they have proper text
+        WebElement sideBar = waitForElementLocatedBy(By.className("sidebar-menu"));
+        List<WebElement> sideBarItems = sideBar.findElements(By.cssSelector("ul > li"));
         List<String> sideBarItemsToStrings =
             sideBarItems.stream().map(WebElement::getText).collect(Collectors.toList());
-        List<String> itemsForChecking = Arrays
+        List<String> sideBarItemsForChecking = Arrays
             .asList("Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
-        softAssert.assertTrue(sideBarItemsToStrings.equals(itemsForChecking),
+        softAssert.assertTrue(sideBarItemsToStrings.equals(sideBarItemsForChecking),
             "there are 5 items in the Left Section and they have proper text");
     }
 
     @AfterSuite
     public void closeBrowser() {
         driver.quit();
-        //softAssert.assertAll();
     }
 
     private WebElement waitForElementLocatedBy(By by) {

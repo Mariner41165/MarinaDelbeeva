@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name= "allTestsSuite">
+<suite name= "hw2profile.xml">
   <test name="allTestsSuite">
     <classes>
       <class name="ru.training.at.hw2.ex1.ExerciseOne"/>
