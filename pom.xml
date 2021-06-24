@@ -18,10 +18,20 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.4.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>4.4.3</version>
         </dependency>
         <dependency>
             <groupId>com.epam.tat.module4</groupId>
@@ -31,6 +41,7 @@
             <systemPath>${Calculator.systemPath}calculator-1.0.jar</systemPath>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -117,6 +128,26 @@
             </build>
             <activation>
                 <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>hw2profile</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M4</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}hw2profile.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
     </profiles>
