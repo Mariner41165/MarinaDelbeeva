@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name= "addAndSubtractTests" verbose="1">
+  <test name="addAndSubtractTests">
+    <classes>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroNaturalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfZeroAndNaturalNumber"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfNonZeroRationalNumbers"/>
+    </classes>
+  </test>
+</suite>

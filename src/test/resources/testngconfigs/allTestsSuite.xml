@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name= "allTestsSuite">
+  <test name="allTestsSuite">
+    <classes>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SumOfNonZeroNaturalNumbers"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfZeroAndNaturalNumber"/>
+      <class name="ru.training.at.hw1.operations.addandsubtract.SubOfNonZeroRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.CtgTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.DivOfRationalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.MultOfNaturalNumbers"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.SqrtTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.TgTest"/>
+      <class name="ru.training.at.hw1.operations.multiplyanddivide.PowTest"/>
+    </classes>
+  </test>
+</suite>
