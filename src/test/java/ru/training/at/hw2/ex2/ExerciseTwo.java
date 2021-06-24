@@ -19,6 +19,7 @@ import org.testng.asserts.SoftAssert;
 public class ExerciseTwo {
 
     WebDriver driver;
+    WebDriverWait wait;
     SoftAssert softAssert;
     Actions action;
 
@@ -26,6 +27,7 @@ public class ExerciseTwo {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 10);
         softAssert = new SoftAssert();
         driver.manage().window().maximize();
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
@@ -33,7 +35,7 @@ public class ExerciseTwo {
     }
 
     @Test
-    public void assertBrowserTitle() {
+    public void doExersiceTwoInHw2() {
         //Assert Browser title
         softAssert.assertEquals("Home Page", driver.getTitle());
 
@@ -84,12 +86,10 @@ public class ExerciseTwo {
     }
 
     private WebElement waitForElementLocatedBy(By by) {
-        return new WebDriverWait(driver, 10)
-            .until(ExpectedConditions.presenceOfElementLocated(by));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     private List<WebElement> waitForListOfElementsLocatedBy(By by) {
-        return new WebDriverWait(driver, 10)
-            .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
     }
 }

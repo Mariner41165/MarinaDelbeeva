@@ -21,18 +21,20 @@ import org.testng.asserts.SoftAssert;
 public class ExerciseOne {
     private WebDriver driver;
     private SoftAssert softAssert;
+    private WebDriverWait wait;
 
     @BeforeSuite
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 10);
         softAssert = new SoftAssert();
         driver.manage().window().maximize();
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
     @Test
-    public void assertBrowserTitle() {
+    public void doExerciseOneInHw2() {
         //Assert Browser title
         softAssert.assertEquals("Home Page", driver.getTitle());
 
@@ -48,11 +50,8 @@ public class ExerciseOne {
         softAssert.assertTrue(username.isDisplayed());
 
         //Assert that there are 4 items on the header section are displayed and they have proper texts
-        waitForElementLocatedBy(By.className("uui-navigation"));
-        List<WebElement> navigationBar = waitForElementLocatedBy(By.className("uui-header"))
-                                               .findElements(By.className("uui-navigation"));
-        List<WebElement> itemsOnHeader = navigationBar.get(0)
-                                                      .findElements(By.cssSelector("ul > li"));
+        List<WebElement> itemsOnHeader =
+            waitForListOfElementsLocatedBy(By.xpath("//ul[@class='uui-navigation nav navbar-nav m-l8']"));
         List<String> itemsOnHeaderToStrings =
             itemsOnHeader.stream().map(WebElement::getText).collect(Collectors.toList());
         List<String> itemsOnHeaderForChecking = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors");
@@ -78,8 +77,7 @@ public class ExerciseOne {
         driver.switchTo().defaultContent();
 
         //Assert that there are 5 items in the Left Section are displayed and they have proper text
-        WebElement sideBar = waitForElementLocatedBy(By.className("sidebar-menu"));
-        List<WebElement> sideBarItems = sideBar.findElements(By.cssSelector("ul > li"));
+        List<WebElement> sideBarItems = waitForListOfElementsLocatedBy(By.xpath("//ul[@class='sidebar-menu left']"));
         List<String> sideBarItemsToStrings =
             sideBarItems.stream().map(WebElement::getText).collect(Collectors.toList());
         List<String> sideBarItemsForChecking = Arrays
@@ -94,12 +92,10 @@ public class ExerciseOne {
     }
 
     private WebElement waitForElementLocatedBy(By by) {
-        return new WebDriverWait(driver, 10)
-            .until(ExpectedConditions.presenceOfElementLocated(by));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     private List<WebElement> waitForListOfElementsLocatedBy(By by) {
-        return new WebDriverWait(driver, 10)
-            .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
     }
 }
