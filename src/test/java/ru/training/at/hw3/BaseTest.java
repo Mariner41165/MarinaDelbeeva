@@ -9,12 +9,15 @@ import org.testng.annotations.BeforeClass;
 public class BaseTest {
 
     protected static WebDriver driver;
+    PropertiesFile properties;
 
     @BeforeClass
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        properties = new PropertiesFile();
+        driver.get(properties.getUrl());
     }
 
     @AfterClass

@@ -14,7 +14,6 @@
         <maven-surefire-plugin.suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}addAndSubtractTests.xml</maven-surefire-plugin.suiteXmlFile>
         <project.maven-surefire-plugin.suiteXmlFile>${basedir}/src/test/resources/testngconfigs/</project.maven-surefire-plugin.suiteXmlFile>
         <Calculator.systemPath>${basedir}/src/main/resources/</Calculator.systemPath>
-        <project.maven-surefire-plugin.suiteXmlFile>${basedir}/src/test/resources/hw2profile.xml/</project.maven-surefire-plugin.suiteXmlFile>
     </properties>
 
     <dependencies>
@@ -28,13 +27,6 @@
             <artifactId>testng</artifactId>
             <version>7.4.0</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.epam.tat.module4</groupId>
-            <artifactId>Calculator</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${Calculator.systemPath}calculator-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -132,7 +124,7 @@
             </activation>
         </profile>
         <profile>
-            <id>allTestsSuite</id>
+            <id>hw2profile</id>
             <build>
                 <plugins>
                     <plugin>
@@ -152,7 +144,7 @@
             </activation>
         </profile>
         <profile>
-            <id>hw3Suite</id>
+            <id>hw3profile</id>
             <build>
                 <plugins>
                     <plugin>
