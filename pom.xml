@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -11,6 +11,14 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <selenium-java.version>3.141.59</selenium-java.version>
+        <testng.version>7.4.0</testng.version>
+        <bonigarcia.version>4.4.3</bonigarcia.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <allure.version>2.13.2</allure.version>
+        <allure.plugin.version>2.10.0</allure.plugin.version>
+        <aspectj.version>1.9.5</aspectj.version>
+
         <maven-surefire-plugin.suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}addAndSubtractTests.xml</maven-surefire-plugin.suiteXmlFile>
         <project.maven-surefire-plugin.suiteXmlFile>${basedir}/src/test/resources/testngconfigs/</project.maven-surefire-plugin.suiteXmlFile>
         <Calculator.systemPath>${basedir}/src/main/resources/</Calculator.systemPath>
@@ -20,25 +28,30 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.19.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.4.0</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.4.3</version>
+            <version>${bonigarcia.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.epam.tat.module4</groupId>
-            <artifactId>Calculator</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${Calculator.systemPath}calculator-1.0.jar</systemPath>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -47,14 +60,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>${maven-surefire-plugin.suiteXmlFile}</suiteXmlFile>
                         <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}allTestsSuite.xml</suiteXmlFile>
                         <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}multiplyAndDivideTests.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -65,6 +88,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>2.5.2</version>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
             </plugin>
         </plugins>
     </build>
@@ -77,7 +105,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M4</version>
+                        <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
                                 <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}addAndSubtractTests.xml</suiteXmlFile>
@@ -97,7 +125,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M4</version>
+                        <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
                                 <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}multiplyAndDivideTests.xml</suiteXmlFile>
@@ -117,7 +145,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M4</version>
+                        <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
                                 <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}allTestsSuite.xml</suiteXmlFile>
@@ -137,7 +165,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M4</version>
+                        <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <suiteXmlFiles>
                                 <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}hw2profile.xml</suiteXmlFile>
@@ -150,6 +178,60 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
+        <profile>
+            <id>hw3profile</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}hw3profile.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>hw4profile</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>${project.maven-surefire-plugin.suiteXmlFile}hw4profile.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
     </profiles>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.plugin.version}</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
