@@ -18,6 +18,22 @@ public class HomePage extends AbstractPage {
     private WebElement passwordField;
     @FindBy (id = "login-button")
     private WebElement loginButton;
+    @FindBy (id = "user-name")
+    private WebElement username;
+    @FindBy (xpath = "//ul[@class='uui-navigation nav navbar-nav m-l8']")
+    private List<WebElement> itemsOnHeader;
+    @FindBy (xpath = "//ul[@class='sidebar-menu left']")
+    private List<WebElement> sideBarItems;
+    @FindBy (className = "benefit-icon")
+    private List<WebElement> images;
+    @FindBy (className = "benefit-txt")
+    private List<WebElement> textsUnderImages;
+    @FindBy (tagName = "iframe")
+    private List<WebElement> iframes;
+    @FindBy (className = "dropdown-toggle")
+    private WebElement serviceButton;
+    @FindBy (xpath = "//a[text()='Different elements']")
+    private WebElement differentElements;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -35,33 +51,26 @@ public class HomePage extends AbstractPage {
     }
 
     public String getUsername() {
-        WebElement username = driver.findElement(By.id("user-name"));
         return username.getText();
     }
 
     public List<String> itemsOnHeaderToStrings() {
-        List<WebElement> itemsOnHeader =
-            driver.findElements(By.xpath("//ul[@class='uui-navigation nav navbar-nav m-l8']"));
         return itemsOnHeader.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public List<String> sideBarItems() {
-        List<WebElement> sideBarItems = driver.findElements(By.xpath("//ul[@class='sidebar-menu left']"));
         return sideBarItems.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public int countOfImages() {
-        List<WebElement> images = driver.findElements(By.className("benefit-icon"));
         return images.size();
     }
 
     public int countOfTextsUnderImages() {
-        List<WebElement> textsUnderImages = driver.findElements(By.className("benefit-txt"));
         return (int) textsUnderImages.stream().map(WebElement::getText).count();
     }
 
     public List<WebElement> existingOfIframe() {
-        List<WebElement> iframes = driver.findElements(By.tagName("iframe"));
         return iframes.get(0).findElements(By.id("frame-button"));
     }
 
@@ -78,11 +87,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void chooseServiceInMenuAndDifferentElementsInSubmenu() {
-        WebElement serviceButton = driver.findElement(By.className("dropdown-toggle"));
         new Actions(driver).moveToElement(serviceButton).click().perform();
-        WebElement differentElements = driver.findElement(By.xpath("//a[text()='Different elements']"));
         new Actions(driver).moveToElement(differentElements).click().perform();
     }
 }
-
-

@@ -5,11 +5,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 public class DifferentElementsPage extends AbstractPage {
 
     private final Actions action;
+
+    @FindBy(className = "label-checkbox")
+    private List<WebElement> listOfCheckboxes;
+    @FindBy (className = "label-radio")
+    private List<WebElement> listOfRadios;
+    @FindBy (className = "colors")
+    private WebElement colors;
 
     public DifferentElementsPage(WebDriver driver) {
         super(driver);
@@ -17,18 +25,15 @@ public class DifferentElementsPage extends AbstractPage {
     }
 
     public void activateCheckboxes() {
-        List<WebElement> listOfCheckboxes = driver.findElements(By.className("label-checkbox"));
         action.moveToElement(listOfCheckboxes.get(0)).click().perform();
         action.moveToElement(listOfCheckboxes.get(2)).click().perform();
     }
 
     public void selectSelenRadiobutton() {
-        List<WebElement> listOfRadios = driver.findElements(By.className("label-radio"));
         action.moveToElement(listOfRadios.get(3)).click().perform();
     }
 
     public void selectYellowColor() {
-        WebElement colors = driver.findElement(By.className("colors"));
         WebElement selectElem = colors.findElement(By.className("uui-form-element"));
         new Select(selectElem).selectByIndex(3);
     }
