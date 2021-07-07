@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name= "hw6profile.xml">
+  <test name="hw6profile">
+    <classes>
+      <class name="ru.training.at.hw6.tests.ex1.ExerciseOneOfHw6Test"/>
+      <class name="ru.training.at.hw6.tests.ex2.ExerciseTwoOfHw6Test"/>
+    </classes>
+  </test>
+</suite>
