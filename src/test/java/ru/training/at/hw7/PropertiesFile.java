@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class PropertiesFile {
     private static final Properties properties = new Properties();
-    private static final File file = new File("src/test/resources/Config.properties");
+    private static final File file = new File("src/main/resources/Config.properties");
 
     public PropertiesFile() {
         try {

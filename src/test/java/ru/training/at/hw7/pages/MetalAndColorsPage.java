@@ -11,7 +11,7 @@ import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
 import java.util.Arrays;
-import ru.training.at.hw7.dataProvider.Data;
+import ru.training.at.hw7.dataProvider.ParametersForCheckingMetalAndColorsForm;
 
 @Url("/metals-colors.html")
 @Title ("Metals & Colors")
@@ -45,26 +45,27 @@ public class MetalAndColorsPage extends WebPage {
     @UI (".panel-body-list.results")
     public static UIElement resultSection;
 
-    public void fillForm(Data data) {
-        oddSummaryRadioButtons.select(String.valueOf(data.getSummary()[0]));
-        evenSummaryRadioButtons.select(String.valueOf(data.getSummary()[1]));
-        elementsCheckboxes.select(data.getElements());
-        colorsList.select(data.getColor());
-        metalsList.select(data.getMetals());
+    public void fillForm(ParametersForCheckingMetalAndColorsForm parametersForCheckingMetalAndColorsForm) {
+        oddSummaryRadioButtons.select(String.valueOf(parametersForCheckingMetalAndColorsForm.getSummary()[0]));
+        evenSummaryRadioButtons.select(String.valueOf(parametersForCheckingMetalAndColorsForm.getSummary()[1]));
+        elementsCheckboxes.select(parametersForCheckingMetalAndColorsForm.getElements());
+        colorsList.select(parametersForCheckingMetalAndColorsForm.getColor());
+        metalsList.select(parametersForCheckingMetalAndColorsForm.getMetals());
         vegetablesDropdownButton.click();
         vegetablesList.select("Vegetables");
-        vegetablesList.select(data.getVegetables());
+        vegetablesList.select(parametersForCheckingMetalAndColorsForm.getVegetables());
     }
 
     public void submit() {
         submitButton.click();
     }
 
-    public void containsProvidedDataInResultSection(Data data) {
-        int sum = data.getSummary()[0] + data.getSummary()[1];
+    public void shouldContainProvidedDataInResultSection(
+        ParametersForCheckingMetalAndColorsForm parametersForCheckingMetalAndColorsForm) {
+        int sum = parametersForCheckingMetalAndColorsForm.getSummary()[0] + parametersForCheckingMetalAndColorsForm.getSummary()[1];
         resultSection.has().text(String.format("Summary: %d\nElements: %s\nColor: %s\nMetal: %s\nVegetables: %s", sum,
-            Arrays.toString(data.getElements()).replaceAll("[\\[\\]]", ""),
-            data.getColor(), data.getMetals(),
-            Arrays.toString(data.getVegetables()).replaceAll("[\\[\\]]", "")));
+            Arrays.toString(parametersForCheckingMetalAndColorsForm.getElements()).replaceAll("[\\[\\]]", ""),
+            parametersForCheckingMetalAndColorsForm.getColor(), parametersForCheckingMetalAndColorsForm.getMetals(),
+            Arrays.toString(parametersForCheckingMetalAndColorsForm.getVegetables()).replaceAll("[\\[\\]]", "")));
     }
 }

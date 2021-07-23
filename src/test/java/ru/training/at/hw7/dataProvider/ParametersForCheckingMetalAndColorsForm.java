@@ -1,6 +1,6 @@
 package ru.training.at.hw7.dataProvider;
 
-public class Data {
+public class ParametersForCheckingMetalAndColorsForm {
     private int[] summary;
     private String[] elements;
     private String color;
