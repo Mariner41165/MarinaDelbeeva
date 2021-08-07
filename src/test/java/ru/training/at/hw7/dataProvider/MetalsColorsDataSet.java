@@ -16,16 +16,16 @@ public class MetalsColorsDataSet {
     public static Object[][] extractDataFromJson() throws FileNotFoundException {
         JsonObject jsonObject = JsonParser.parseReader(new FileReader(new PropertiesFile()
             .getJsonFile())).getAsJsonObject();
-        List<ParametersForCheckingMetalAndColorsForm> data = new ArrayList<>();
+        List<MetalAndColorsValues> data = new ArrayList<>();
         Gson gson = new Gson();
         for (String key : jsonObject.keySet()) {
-            ParametersForCheckingMetalAndColorsForm
-                fromJson = gson.fromJson(jsonObject.get(key), ParametersForCheckingMetalAndColorsForm.class);
+            MetalAndColorsValues
+                fromJson = gson.fromJson(jsonObject.get(key), MetalAndColorsValues.class);
             data.add(fromJson);
         }
-        List<ParametersForCheckingMetalAndColorsForm[]> list = new ArrayList<>();
-        for (ParametersForCheckingMetalAndColorsForm value : data) {
-            ParametersForCheckingMetalAndColorsForm[] data1 = new ParametersForCheckingMetalAndColorsForm[] {value};
+        List<MetalAndColorsValues[]> list = new ArrayList<>();
+        for (MetalAndColorsValues value : data) {
+            MetalAndColorsValues[] data1 = new MetalAndColorsValues[] {value};
             list.add(data1);
         }
         return list.toArray(new Object[0][]);

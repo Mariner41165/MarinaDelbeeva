@@ -8,9 +8,6 @@ import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.Link;
 import com.epam.jdi.light.ui.html.elements.common.Text;
 import com.epam.jdi.light.ui.html.elements.common.TextField;
-import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -43,7 +40,7 @@ public class HomePage extends WebPage {
     }
 
     public String getUsername() {
-        return username.getText().toUpperCase(Locale.ROOT);
+        return username.getText().toUpperCase();
     }
 
     public void chooseMetalAndColorsInHeader() {
