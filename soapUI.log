@@ -1,0 +1,21 @@
+Thu Aug 19 00:21:15 MSK 2021:INFO:SpellServiceSoapTestSuiteOne is running
+Thu Aug 19 00:21:15 MSK 2021:INFO:setup testOrthography
+Thu Aug 19 00:21:15 MSK 2021:INFO: Log was initialized by SetUp Step in  log.info "setup testOrthography"
+Thu Aug 19 00:21:15 MSK 2021:INFO:Here is Groovy Script Example begins
+Thu Aug 19 00:21:15 MSK 2021:INFO:Here is Global Property
+Thu Aug 19 00:21:15 MSK 2021:INFO:Log was initialized by TearDown Step in  log.info "teardown testOrthography"
+Thu Aug 19 00:21:15 MSK 2021:INFO:teardown testOrthography
+Thu Aug 19 00:21:15 MSK 2021:INFO:setup testRepetitiveWords
+Thu Aug 19 00:21:15 MSK 2021:INFO:teardown testRepetitiveWords
+Thu Aug 19 00:21:15 MSK 2021:INFO:setup testIgnoreCapitalLetters
+Thu Aug 19 00:21:15 MSK 2021:INFO:каренина
+Thu Aug 19 00:21:15 MSK 2021:INFO:толстой
+Thu Aug 19 00:21:15 MSK 2021:INFO:облонский
+Thu Aug 19 00:21:15 MSK 2021:INFO:teardown testIgnoreCapitalLetters
+Thu Aug 19 00:21:15 MSK 2021:INFO:setup testIgnoreDigits
+Thu Aug 19 00:21:15 MSK 2021:INFO:teardown testIgnoreDigits
+Thu Aug 19 00:21:15 MSK 2021:INFO:setup testRedundantLetters
+Thu Aug 19 00:21:15 MSK 2021:INFO:  --  log.info "setup testRedundantLetters"
+Thu Aug 19 00:21:15 MSK 2021:INFO:  --  log.info "teardown testRedundantLetters"
+Thu Aug 19 00:21:15 MSK 2021:INFO:teardown testRedundantLetters
+Thu Aug 19 00:21:15 MSK 2021:INFO:SpellServiceSoapTestSuiteOne is closed
