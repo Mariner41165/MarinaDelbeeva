@@ -11,25 +11,19 @@ public class Board {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("desc")
+    @SerializedName("idMemberCreator")
     @Expose
-    private String desc;
-    @SerializedName("descData")
-    @Expose
-    private String descData;
-    @SerializedName("closed")
-    @Expose
-    private Boolean closed;
+    private Boolean idMemberCreator;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,28 +35,12 @@ public class Board {
         this.name = name;
     }
 
-    public String getDescData() {
-        return descData;
-    }
-
-    public void setDescData(String descData) {
-        this.descData = descData;
-    }
-
     public Boolean getClosed() {
-        return closed;
+        return idMemberCreator;
     }
 
     public void setClosed(Boolean closed) {
-        this.closed = closed;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
+        this.idMemberCreator = closed;
     }
 
     @Override
@@ -78,17 +56,9 @@ public class Board {
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
         sb.append(',');
-        sb.append("desc");
+        sb.append("idMemberCreator");
         sb.append('=');
-        sb.append(((this.desc == null)?"<null>":this.desc));
-        sb.append(',');
-        sb.append("descData");
-        sb.append('=');
-        sb.append(((this.descData == null)?"<null>":this.descData));
-        sb.append(',');
-        sb.append("closed");
-        sb.append('=');
-        sb.append(((this.closed == null)?"<null>":this.closed));
+        sb.append(((this.idMemberCreator == null)?"<null>":this.idMemberCreator));
         sb.append(',');
 
         if (sb.charAt((sb.length()- 1)) == ',') {
@@ -104,9 +74,7 @@ public class Board {
         int result = 1;
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
-        result = ((result* 31)+((this.desc == null)? 0 :this.desc.hashCode()));
-        result = ((result* 31)+((this.descData == null)? 0 :this.descData.hashCode()));
-        result = ((result* 31)+((this.closed == null)? 0 :this.closed.hashCode()));
+        result = ((result* 31)+((this.idMemberCreator == null)? 0 :this.idMemberCreator.hashCode()));
         return result;
     }
 
@@ -121,12 +89,11 @@ public class Board {
         Board rhs = ((Board) other);
         return ((((((((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id)))
             &&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))
-            &&((this.desc == rhs.desc)||((this.desc!= null)&&this.desc.equals(rhs.desc))))
-            &&((this.descData == rhs.descData)||((this.descData!= null)&&this.descData.equals(rhs.descData))))
-            &&((this.closed == rhs.closed)||((this.closed!= null)&&this.closed.equals(rhs.closed))))));
+            &&((this.idMemberCreator == rhs.idMemberCreator)||((this.idMemberCreator!= null)&&
+            this.idMemberCreator.equals(rhs.idMemberCreator))))))));
     }
 
-    public String generateDescription(int length) {
+    public static String generateString(int length) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             + "0123456789"
             + "abcdefghijklmnopqrstuvxyz";

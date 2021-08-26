@@ -36,16 +36,8 @@ public class TrelloTestProperties {
         return properties.getProperty("token");
     }
 
-    public String getTrelloUrl() {
-        return properties.getProperty("trellourl");
-    }
-
     public static String getId() {
         return properties.getProperty("id");
-    }
-
-    public static String getBoardName() {
-        return properties.getProperty("boardName");
     }
 
 }

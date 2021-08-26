@@ -1,15 +1,30 @@
 package core;
 
-import constants.ParameterName;
+import beans.Board;
 
+import constants.ParameterName;
 import org.testng.annotations.DataProvider;
 
 public class DataProviders {
 
     @DataProvider
-    public static Object[][] createListDataProvider() {
+    public static Object[][] trelloBoardDataProvider() {
         return new Object[][]{
-            {ParameterName.BOARD_NAME, "Ищфкв" + (int)(Math.random()*100)}
+            {Board.generateString(10)}
+        };
+    }
+
+    @DataProvider
+    public static Object[][] trelloBoardWithUpdatesDataProvider() {
+        return new Object[][]{
+            {Board.generateString(10), "NewCardName"}
+        };
+    }
+
+    @DataProvider
+    public static Object[][] getFieldOnBoard() {
+        return new Object[][]{
+            {Board.generateString(10), ParameterName.ID_MEMBER_CREATOR}
         };
     }
 }
