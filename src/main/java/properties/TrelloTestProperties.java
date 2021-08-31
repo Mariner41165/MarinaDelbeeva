@@ -10,21 +10,11 @@ public class TrelloTestProperties {
     private static final Properties properties = new Properties();
     private static final File file = new File("src/test/resources/Config.properties");
 
-    public TrelloTestProperties() {
-        InputStream input = null;
-        try {
-            input = new FileInputStream(file);
+    static {
+        try (InputStream input = new FileInputStream(file)) {
             properties.load(input);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            throw new RuntimeException("Unable to read property file");
         }
     }
 

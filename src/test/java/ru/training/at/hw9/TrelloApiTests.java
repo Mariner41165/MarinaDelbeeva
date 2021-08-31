@@ -14,6 +14,7 @@ import core.DataProviders;
 import core.TrelloServiceObject;
 import io.restassured.http.Method;
 import org.hamcrest.Matchers;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import properties.TrelloTestProperties;
 import ru.training.at.hw9.steps.BoardsSteps;
@@ -24,9 +25,9 @@ import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
+import static ru.training.at.hw9.steps.BoardsSteps.deleteBoard;
 
 public class TrelloApiTests {
-    TrelloTestProperties props = new TrelloTestProperties();
     Board board;
     String receivedAnswer;
 
@@ -59,7 +60,7 @@ public class TrelloApiTests {
         board = getBoardFromResponse(TrelloServiceObject.requestBuilder()
             .setParameters()
             .buildRequest()
-            .sendRequestWithPathParameter(existingBoardId)
+            .sendRequestWithBoardId(existingBoardId)
             .then().assertThat()
             .spec(goodResponseSpecification())
             .extract().response());
@@ -71,7 +72,7 @@ public class TrelloApiTests {
         receivedAnswer = (requestBuilder()
             .setParameters()
             .buildRequest()
-            .sendRequestWithPathParameter(id)
+            .sendRequestWithBoardId(id)
             .then().assertThat()
             .spec(badResponseSpecification())
             .extract().response())
@@ -88,7 +89,7 @@ public class TrelloApiTests {
             .setName(newBoardName)
             .setParameters()
             .buildRequest()
-            .sendRequestWithPathParameter(existingBoardId)
+            .sendRequestWithBoardId(existingBoardId)
             .then().assertThat()
             .spec(TrelloServiceObject.goodResponseSpecification())
             .extract().response());
@@ -104,7 +105,7 @@ public class TrelloApiTests {
             .setName(newBoardName)
             .setParameters()
             .buildRequest()
-            .sendRequestWithPathParameter(boardId)
+            .sendRequestWithBoardId(boardId)
             .then().assertThat()
             .spec(TrelloServiceObject.badResponseSpecification())
             .extract().response())
@@ -121,7 +122,7 @@ public class TrelloApiTests {
             .requestBuilder()
             .setParameters()
             .buildRequest()
-            .sendRequestWithPathParameter(board.getId())
+            .sendRequestWithBoardId(board.getId())
             .then().assertThat()
             .spec(goodResponseSpecification())
             .extract().response());
@@ -129,10 +130,10 @@ public class TrelloApiTests {
     }
 
     @Test (dataProvider = "trelloBoardDataProvider", dataProviderClass = DataProviders.class)
-    public void deleteBoard(String boardName) {
+    public void deleteExistingBoard(String boardName) {
         board = BoardsSteps.createBoard(boardName);
 
-        receivedAnswer = BoardsSteps.deleteBoard(boardName, board.getId()).path("_value");
+        receivedAnswer = deleteBoard(boardName, board.getId()).path("_value");
 
         assertThat("The board was successfully deleted", receivedAnswer, nullValue());
     }
@@ -141,8 +142,7 @@ public class TrelloApiTests {
     public void deleteNonexistentBoard(String boardName, String id) {
         board = BoardsSteps.createBoard(boardName);
 
-        receivedAnswer = (BoardsSteps
-            .deleteBoard(boardName, id)
+        receivedAnswer = (deleteBoard(boardName, id)
             .then().assertThat()
             .spec(badResponseSpecification())
             .extract().response())
@@ -158,12 +158,18 @@ public class TrelloApiTests {
         receivedAnswer = requestBuilder()
             .setParameters()
             .buildRequest()
-            .sendRequestWithTwoPathParams(board.getId(), field)
+            .sendRequestWithBoardIdAndSpecificField(board.getId(), field)
             .then().assertThat()
             .spec(goodResponseSpecification())
             .extract().response().path("_value");
 
         assertThat(receivedAnswer, equalTo(TrelloTestProperties.getId()));
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        if (board != null)
+        deleteBoard(board.getName(), board.getId());
     }
 
 }

@@ -2,8 +2,6 @@ package beans;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import javax.annotation.processing.Generated;
 
 @Generated("jsonschema2pojo")
@@ -93,13 +91,4 @@ public class Board {
             this.idMemberCreator.equals(rhs.idMemberCreator))))))));
     }
 
-    public static String generateString(int length) {
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            + "0123456789"
-            + "abcdefghijklmnopqrstuvxyz";
-        String sb = IntStream.range(0, length).map(i -> (int) (AlphaNumericString.length()
-            * Math.random())).mapToObj(index -> String.valueOf(AlphaNumericString
-            .charAt(index))).collect(Collectors.joining());
-        return sb;
-    }
 }

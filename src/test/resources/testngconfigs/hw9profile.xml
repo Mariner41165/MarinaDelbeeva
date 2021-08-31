@@ -3,7 +3,7 @@
 <suite name= "hw9profile.xml">
   <test name="hw9profile">
     <classes>
-      <class name="TrelloApiTests"/>
+      <class name="ru.training.at.hw9.TrelloApiTests"/>
     </classes>
   </test>
 </suite>

@@ -1,5 +1,6 @@
 package core;
 
+import java.util.List;
 import properties.TrelloTestProperties;
 
 import beans.Board;
@@ -72,7 +73,7 @@ public class TrelloServiceObject {
             .prettyPeek();
     }
 
-    public Response sendRequestWithPathParameter(String id) {
+    public Response sendRequestWithBoardId(String id) {
         return RestAssured
             .given(requestSpecification()).log().all()
             .pathParam("id", id)
@@ -81,7 +82,7 @@ public class TrelloServiceObject {
             .prettyPeek();
     }
 
-    public Response sendRequestWithTwoPathParams(String id, String field) {
+    public Response sendRequestWithBoardIdAndSpecificField(String id, String field) {
         return RestAssured
             .given(requestSpecification()).log().all()
             .pathParam("id", id)

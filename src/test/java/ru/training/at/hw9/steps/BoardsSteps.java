@@ -28,7 +28,7 @@ public class BoardsSteps {
             .setName(boardName)
             .setParameters()
             .buildRequest()
-            .sendRequestWithPathParameter(id);
+            .sendRequestWithBoardId(id);
     }
 
 }
