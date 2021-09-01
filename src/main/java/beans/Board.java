@@ -1,29 +1,20 @@
+
 package beans;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import javax.annotation.processing.Generated;
 
-@Generated("jsonschema2pojo")
 public class Board {
 
-    @SerializedName("id")
-    @Expose
-    private String id;
     @SerializedName("name")
     @Expose
     private String name;
     @SerializedName("idMemberCreator")
     @Expose
-    private Boolean idMemberCreator;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private String idMemberCreator;
+    @SerializedName("id")
+    @Expose
+    private String id;
 
     public String getName() {
         return name;
@@ -33,23 +24,26 @@ public class Board {
         this.name = name;
     }
 
-    public Boolean getClosed() {
+    public String getIdMemberCreator() {
         return idMemberCreator;
     }
 
-    public void setClosed(Boolean closed) {
-        this.idMemberCreator = closed;
+    public void setIdMemberCreator(String idMemberCreator) {
+        this.idMemberCreator = idMemberCreator;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Board.class.getName()).append('@')
-          .append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
+        sb.append(Board.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
@@ -58,7 +52,10 @@ public class Board {
         sb.append('=');
         sb.append(((this.idMemberCreator == null)?"<null>":this.idMemberCreator));
         sb.append(',');
-
+        sb.append("id");
+        sb.append('=');
+        sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
@@ -70,8 +67,8 @@ public class Board {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
+        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.idMemberCreator == null)? 0 :this.idMemberCreator.hashCode()));
         return result;
     }
@@ -85,10 +82,7 @@ public class Board {
             return false;
         }
         Board rhs = ((Board) other);
-        return ((((((((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id)))
-            &&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))
-            &&((this.idMemberCreator == rhs.idMemberCreator)||((this.idMemberCreator!= null)&&
-            this.idMemberCreator.equals(rhs.idMemberCreator))))))));
+        return ((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.idMemberCreator == rhs.idMemberCreator)||((this.idMemberCreator!= null)&&this.idMemberCreator.equals(rhs.idMemberCreator))));
     }
 
 }
