@@ -1,31 +1,38 @@
 package ru.training.at.hw4.jenkins;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import java.util.Arrays;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
 import org.testng.asserts.SoftAssert;
 import ru.training.at.hw4.PropertiesFile;
+import ru.training.at.hw4.listeners.AllureListener;
 import ru.training.at.hw4.pages.HomePage;
 import ru.training.at.hw4.tests.BaseTest;
 
-public class ClassThatShouldBeFailed extends BaseTest {
+public class ClassThatShouldBeFailedTest extends BaseTest {
 
     private final SoftAssert softAssert = new SoftAssert();
     PropertiesFile properties = new PropertiesFile();
 
-    @Test
+    @Feature(value = "Feature 0")
+    @Story(value = "User Story 0")
+    @Test(description = "Выполнение теста, который не должен быть пройден")
     public void doExerciseOneInHw3() {
         //Assert Browser title
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         softAssert.assertEquals(driver.getTitle(), "Home Page");
 
-        //Assert Username is logged in ----------- FAIL
-        homePage.performLogin("ROMAN IOVLEV", properties.getPassword());
-        Assert.assertTrue(homePage.getUsername().equalsIgnoreCase(properties.getUsername()));
+        //Assert Username is logged in
+        homePage.performLogin("Roman Iovlev", properties.getPassword());
+        softAssert.assertTrue(homePage.getUsername().equalsIgnoreCase(properties.getUsername()));
 
         //Assert that there are 4 items on the header section are displayed and they have proper texts
         List<String> itemsOnHeaderForChecking = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors");
@@ -52,5 +59,7 @@ public class ClassThatShouldBeFailed extends BaseTest {
             .asList("Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
         softAssert.assertTrue(homePage.sideBarItems().equals(sideBarItemsForChecking),
             "there are 5 items in the Left Section and they have proper text");
+
+        softAssert.assertAll();
     }
 }
